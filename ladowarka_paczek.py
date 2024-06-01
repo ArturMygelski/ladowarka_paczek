@@ -1,34 +1,31 @@
-print("witaj w naszej sortowni dokumentow")
-ilosc_dokumentow = int(input("podaj prosze ile dokumentow chcesz posegregowac - podaj wartosc liczbowa "))
-suma_stron = 0
-ilosc_szafek = 1
-pojemnosc_szafki = 100
-pojemnosc_obecnej_szafki = 0
-maksymalne_wolne_miejsce = 0
-numer_szafki_z_max_pustym_miejscem = 1
-ilosc_dodanych_dokumentow = 0
-for dokument in range(ilosc_dokumentow):
-    ilosc_stron = int(input("podaj ilosc stron dokumentu: "))
-    if 1<= ilosc_stron <= 30:
-        suma_stron += ilosc_stron
-# pojemnosc_obecnej_szafki += ilosc_stron
-        if ilosc_stron + pojemnosc_obecnej_szafki > pojemnosc_szafki:
-            if pojemnosc_szafki - pojemnosc_obecnej_szafki > maksymalne_wolne_miejsce:
-                maksymalne_wolne_miejsce = pojemnosc_szafki - pojemnosc_obecnej_szafki
-                numer_szafki_z_max_pustym_miejscem = ilosc_szafek
-            ilosc_szafek += 1
-            pojemnosc_obecnej_szafki = ilosc_stron
+print("witaj w naszej sortowni paczek")
+ilosc_przedmiotow = int(input("podaj proszę ile przedmiotów chcesz wysłać - podaj wartość liczbową "))
+waga_przedmiotów = 0
+ilosc_paczek = 1
+max_waga_paczki = 20
+waga_obecnej_paczki = 0
+max_wykorzystanie_wagi = 0
+numer_paczki_z_max_wykorzystaniem_wagi = 1
+for przedmiot in range(ilosc_przedmiotow):
+    waga_przedmiotu = int(input("podaj ilosc wagę każdego z przedmiotów: "))
+    if 1 <= waga_przedmiotu <= 10:
+        waga_przedmiotów += waga_przedmiotu
+        if waga_przedmiotu + waga_obecnej_paczki > max_waga_paczki:
+            if max_waga_paczki - waga_obecnej_paczki > max_wykorzystanie_wagi:
+                max_wykorzystanie_wagi = max_waga_paczki - waga_obecnej_paczki
+                numer_paczki_z_max_wykorzystaniem_wagi = ilosc_paczek
+            ilosc_paczek += 1
+            waga_obecnej_paczki = waga_przedmiotu
         else:
-            pojemnosc_obecnej_szafki += ilosc_stron
+            waga_obecnej_paczki += waga_przedmiotu
     else:
-        print("ilosc stron nie miesci sie w zakresie referencyjnym 1-30")
-if pojemnosc_szafki - pojemnosc_obecnej_szafki > maksymalne_wolne_miejsce:
-    maksymalne_wolne_miejsce = pojemnosc_szafki - pojemnosc_obecnej_szafki
-    numer_szafki_z_max_pustym_miejscem = ilosc_szafek
+        print("przedmiot nie mieści się w zakresie referencyjnym 1-20")
+if max_waga_paczki - waga_obecnej_paczki > max_wykorzystanie_wagi:
+    max_wykorzystanie_wagi = max_waga_paczki - waga_obecnej_paczki
+    numer_paczki_z_max_wykorzystaniem_wagi = ilosc_paczek
 
-print(f"ilosc dodanych dokumentow to: {ilosc_dodanych_dokumentow}")
-print(f"ilosc dodanych dokumentow to {ilosc_dokumentow} ")
-print(f"suma stron dokumentow to {suma_stron}")
-print(f"suma szafek to: {ilosc_szafek}")
-print(f"suma wolnych miejsc w szafkach to: {ilosc_szafek * pojemnosc_szafki - suma_stron}")
-print(f"najwiecej wolnego miejsca w szafce: {maksymalne_wolne_miejsce}, nr szafki: {numer_szafki_z_max_pustym_miejscem}")
+print(f"ilosc dodanych przedmiotów ogółem to: {ilosc_przedmiotow}")
+print(f"waga wszystkich przedmiotów to {waga_przedmiotów}")
+print(f"suma paczek to: {ilosc_paczek}")
+print(f"suma pustych kilogramów w paczkach to: {ilosc_paczek * max_waga_paczki - waga_przedmiotów}")
+print(f"najwiecej pustych kilogramów: {max_wykorzystanie_wagi}, w paczce nr paczki: {numer_paczki_z_max_wykorzystaniem_wagi}")
